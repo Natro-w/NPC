@@ -5,11 +5,6 @@ author: Natro
 main: ru.Natro.npc.NPC
 load: STARTUP
 
-commands:
-  npc:
-    description: Spawn and modify NPCs
-    usage: "/npc [action]"
-    permission: npc.edit
 permissions:
   npc.edit:
     description: "Allows the player to spawn and modify NPCs"

@@ -23,6 +23,7 @@ public class NPC extends PluginBase {
     @Override
     public void onEnable() {
         getServer().getPluginManager().registerEvents(new EventListener(), this);
+        getServer().getCommandMap().register("npc", new NPCCommand());
     }
 
     private static void registerNPCs() {
@@ -99,8 +100,5 @@ public class NPC extends PluginBase {
         Registries.ENTITY.register(NPC_Warden.class.getSimpleName(), NPC_Warden.class);
     }
 
-    @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        return CommandHandler.handle(sender, command, args);
-    }
+
 }

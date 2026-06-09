@@ -4,6 +4,7 @@ import cn.nukkit.Player;
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
 import cn.nukkit.entity.Entity;
+import cn.nukkit.utils.TextFormat;
 import cn.nukkit.entity.data.skin.Skin;
 import cn.nukkit.inventory.PlayerInventory;
 import cn.nukkit.item.Item;
@@ -64,6 +65,7 @@ public class CommandHandler {
                         name = name.replaceFirst(" ", "");
                     }
                     name = name.replace("%n", "\n");
+                    name = TextFormat.colorize(name);
                     CompoundTag nbt = nbt(player, args, name);
                     Entity ent = Entity.createEntity("NPC_" + args[1], player.chunk, nbt);
                     ent.setNameTag(name);
@@ -362,6 +364,7 @@ public class CommandHandler {
                                     name = name.replaceFirst(" ", "");
 
                                     name = name.replace("%n", "\n");
+                                    name = TextFormat.colorize(name);
                                     e.setNameTag(name);
                                     e.setNameTagVisible(true);
                                     e.setNameTagAlwaysVisible(true);
