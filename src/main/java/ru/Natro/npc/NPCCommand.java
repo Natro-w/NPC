@@ -3,6 +3,7 @@ package ru.Natro.npc;
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
 import cn.nukkit.command.data.CommandEnum;
+import cn.nukkit.command.data.CommandParamType;
 import cn.nukkit.command.data.CommandParameter;
 
 import java.util.Arrays;
@@ -47,14 +48,14 @@ public class NPCCommand extends Command {
         this.commandParameters.put("spawn", new CommandParameter[]{
                 CommandParameter.newEnum("action", false, new CommandEnum("NPCSpawnAction", List.of("spawn"))),
                 CommandParameter.newEnum("entity", false, entityEnum),
-                CommandParameter.newType("name", true, CommandParameter.ARG_TYPE_STRING)
+                CommandParameter.newType("name", true, CommandParamType.STRING)
         });
 
         this.commandParameters.put("edit", new CommandParameter[]{
                 CommandParameter.newEnum("action", false, new CommandEnum("NPCEditActionAlias", List.of("edit"))),
-                CommandParameter.newType("id", false, CommandParameter.ARG_TYPE_INT),
+                CommandParameter.newType("id", false, CommandParamType.INT),
                 CommandParameter.newEnum("editAction", false, editEnum),
-                CommandParameter.newType("value", true, CommandParameter.ARG_TYPE_STRING)
+                CommandParameter.newType("value", true, CommandParamType.STRING)
         });
 
         this.commandParameters.put("remove", new CommandParameter[]{
@@ -71,8 +72,8 @@ public class NPCCommand extends Command {
 
         CommandParameter[] cmdParams = new CommandParameter[]{
                 CommandParameter.newEnum("action", false, new CommandEnum("NPCCmdAction", ACTIONS)),
-                CommandParameter.newType("id", false, CommandParameter.ARG_TYPE_INT),
-                CommandParameter.newType("cmd", false, CommandParameter.ARG_TYPE_STRING)
+                CommandParameter.newType("id", false, CommandParamType.INT),
+                CommandParameter.newType("cmd", false, CommandParamType.STRING)
         };
 
         this.commandParameters.put("addcmd", cmdParams);
@@ -81,11 +82,11 @@ public class NPCCommand extends Command {
         this.commandParameters.put("delplayercmd", cmdParams);
         this.commandParameters.put("delallcmd", new CommandParameter[]{
                 CommandParameter.newEnum("action", false, new CommandEnum("NPCDelAllAction", List.of("delallcmd"))),
-                CommandParameter.newType("id", false, CommandParameter.ARG_TYPE_INT)
+                CommandParameter.newType("id", false, CommandParamType.INT)
         });
         this.commandParameters.put("listcmd", new CommandParameter[]{
                 CommandParameter.newEnum("action", false, new CommandEnum("NPCListCmdAction", List.of("listcmd"))),
-                CommandParameter.newType("id", false, CommandParameter.ARG_TYPE_INT)
+                CommandParameter.newType("id", false, CommandParamType.INT)
         });
 
         this.commandParameters.put("help", new CommandParameter[]{
