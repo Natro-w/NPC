@@ -4,8 +4,9 @@ api: ["1.0.14"]
 author: Natro
 main: ru.Natro.npc.NPC
 load: STARTUP
+depend: ["FakeInventories"]
 
 permissions:
   npc.edit:
     description: "Allows the player to spawn and modify NPCs"
-    default: op
+    default: true

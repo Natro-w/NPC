@@ -14,7 +14,7 @@ public class NPCCommand extends Command {
     private static final List<String> ACTIONS = Arrays.asList(
             "spawn", "edit", "remove", "entities", "getid",
             "addcmd", "addplayercmd", "delcmd", "delplayercmd",
-            "delallcmd", "listcmd", "help"
+            "delallcmd", "listcmd", "list", "gui", "help"
     );
 
     private static final List<String> EDIT_ACTIONS = Arrays.asList(
@@ -87,6 +87,14 @@ public class NPCCommand extends Command {
         this.commandParameters.put("listcmd", new CommandParameter[]{
                 CommandParameter.newEnum("action", false, new CommandEnum("NPCListCmdAction", List.of("listcmd"))),
                 CommandParameter.newType("id", false, CommandParamType.INT)
+        });
+
+        this.commandParameters.put("list", new CommandParameter[]{
+                CommandParameter.newEnum("action", false, new CommandEnum("NPCListAction", List.of("list")))
+        });
+
+        this.commandParameters.put("gui", new CommandParameter[]{
+                CommandParameter.newEnum("action", false, new CommandEnum("NPCGuiAction", List.of("gui")))
         });
 
         this.commandParameters.put("help", new CommandParameter[]{

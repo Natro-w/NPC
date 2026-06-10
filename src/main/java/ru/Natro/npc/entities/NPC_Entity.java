@@ -1,8 +1,10 @@
 package ru.Natro.npc.entities;
 
+import cn.nukkit.Player;
 import cn.nukkit.entity.Entity;
 import cn.nukkit.level.format.FullChunk;
 import cn.nukkit.nbt.tag.CompoundTag;
+import cn.nukkit.math.Vector3;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,6 +36,36 @@ public abstract class NPC_Entity extends Entity {
         if (namedTag.contains("Scale")) {
             setScale(namedTag.getFloat("Scale"));
         }
+    }
+
+    @Override
+    public boolean canCollideWith(Entity entity) {
+        if (entity instanceof Player && !namedTag.getBoolean("Collidable")) {
+            return false;
+        }
+        return super.canCollideWith(entity);
+    }
+
+    @Override
+    public void applyEntityCollision(Entity entity) {
+        if (!(entity instanceof Player)) {
+            super.applyEntityCollision(entity);
+            return;
+        }
+        boolean collidable = namedTag.getBoolean("Collidable");
+        if (!collidable) return;
+        float knockback = namedTag.getFloat("Knockback");
+        if (knockback <= 0) {
+            super.applyEntityCollision(entity);
+            return;
+        }
+        double dx = entity.x - this.x;
+        double dz = entity.z - this.z;
+        double dist = Math.sqrt(dx * dx + dz * dz);
+        if (dist < 0.01) return;
+        double nx = dx / dist;
+        double nz = dz / dist;
+        entity.setMotion(new Vector3(nx * knockback, 0, nz * knockback));
     }
 
     public float getHeight() {

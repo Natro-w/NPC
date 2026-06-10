@@ -38,8 +38,20 @@
             <scope>system</scope>
             <systemPath>${basedir}/Lumi-1.6.0.jar</systemPath>
         </dependency>
+        <dependency>
+            <groupId>com.luminiadev.fakeinventories</groupId>
+            <artifactId>fakeinventories</artifactId>
+            <version>1.2.3</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+    <repositories>
+        <repository>
+            <id>luminiadev-repo</id>
+            <url>https://repo.luminiadev.com/releases</url>
+        </repository>
+    </repositories>
 </project>

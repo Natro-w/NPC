@@ -453,6 +453,28 @@ public class CommandHandler {
                         player.sendMessage("§eKill mode activated - click an NPC to remove it");
                     }
                     return true;
+                case "gui":
+                    NPCGUI.openMainMenu(player);
+                    return true;
+                case "list":
+                    {
+                        List<Entity> npcs = NPCGUI.getNPCs(player);
+                        if (npcs.isEmpty()) {
+                            player.sendMessage("§cNo NPCs found");
+                            return true;
+                        }
+                        player.sendMessage("§l§a--- NPC List (" + npcs.size() + ") ---");
+                        for (Entity npEnt : npcs) {
+                            String n = npEnt.getNameTag();
+                            if (n == null || n.isEmpty() || "%k".equals(n)) n = "§7(no name)";
+                            String t = npEnt instanceof NPC_Human ? "Human" :
+                                    npEnt instanceof NPC_Block ? "Block" : npEnt.getClass().getSimpleName().replace("NPC_", "");
+                            player.sendMessage(" §e#" + npEnt.getId() + " §f" + n + " §7- " + t +
+                                    " @ " + npEnt.getLevel().getFolderName() + " " +
+                                    (int) npEnt.x + "," + (int) npEnt.y + "," + (int) npEnt.z);
+                        }
+                        return true;
+                    }
                 case "entities":
                     sender.sendMessage("§aAvailable entities: §3" + ENTITIES);
                     return true;
@@ -508,6 +530,8 @@ public class CommandHandler {
         sender.sendMessage("§3Delete all commands: §e/npc delallcmd <ID>");
         sender.sendMessage("§3See all commands: §e/npc listcmd <ID>");
         sender.sendMessage("§3Edit NPC: §e/npc edit <ID> <item|offhanditem|armor|scale|name|scoretag|tphere|block|skin> [value]");
+        sender.sendMessage("§3List all NPCs: §e/npc list");
+        sender.sendMessage("§3Open GUI: §e/npc gui");
         sender.sendMessage("§3Show command help: §e/npc help");
     }
 
